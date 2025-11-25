@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entre Hilos y Voces - Promoviendo la Paz</title>
+    <style>
+        /* --- AQUÍ COMIENZA EL CÓDIGO CSS (ESTILOS Y DISEÑO) --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7;
+            color: #333;
+        }
+
+        nav {
+            background-color: #0d47a1;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd54f;
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-section img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .full-width-section {
+            position: relative;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+            scroll-margin-top: 60px;
+        }
+
+        .full-width-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-content h2 {
+            font-size: 2.5em;
+            color: #ffd54f;
+            margin-bottom: 30px;
+        }
+
+        .section-content p {
+            font-size: 1.2em;
+            text-align: justify;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        #mision { background-image: url('2.jpg'); }
+        #vision { background-image: url('9.jpg'); }
+
+        .spacer {
+            height: 100px;
+            background-color: #fdfbf7;
+        }
+
+        .slider-section {
+            padding: 60px 0;
+            background-color: #e0f2f1;
+            text-align: center;
+            overflow: hidden;
+            scroll-margin-top: 60px;
+        }
+
+        .slider-section h2 {
+            color: #00796b;
+            font-size: 3em;
+            margin-bottom: 50px;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(550px * 6); 
+            animation: scroll 25s linear infinite;
+        }
+
+        .slide {
+            width: 550px;
+            height: 400px;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .slide img:hover {
+            transform: scale(1.03);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-550px * 3)); } 
+        }
+
+        .partners-section {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+            overflow: hidden;
+            border-top: 1px solid #eee;
+            scroll-margin-top: 60px;
+        }
+
+        .partners-section h2 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .partners-track {
+            display: flex;
+            width: calc(300px * 10); 
+            animation: scrollPartners 30s linear infinite;
+        }
+
+        .partner-slide {
+            width: 300px;
+            height: 200px;
+            padding: 0 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .partner-slide img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes scrollPartners {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-300px * 5)); } 
+        }
+
+        .groups-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .group-card {
+            background: white;
+            flex: 1; 
+            min-width: 300px;
+            max-width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 6px solid #ccc;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .group-card h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .group-card ul {
+            padding-left: 20px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .group-card li {
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .target-audience {
+            font-style: italic;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .card-blue { border-top-color: #1976d2; } .card-blue h3 { color: #1976d2; }
+        .card-green { border-top-color: #388e3c; } .card-green h3 { color: #388e3c; }
+        .card-orange { border-top-color: #f57c00; } .card-orange h3 { color: #f57c00; }
+        .card-red { border-top-color: #d32f2f; } .card-red h3 { color: #d32f2f; }
+        .card-yellow { border-top-color: #fbc02d; } .card-yellow h3 { color: #f9a825; }
+        .card-brown { border-top-color: #795548; } .card-brown h3 { color: #5d4037; }
+        .card-purple { border-top-color: #7b1fa2; } .card-purple h3 { color: #7b1fa2; }
+
+        .talks-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            scroll-margin-top: 60px;
+        }
+        
+        .talks-section h2 {
+            font-size: 3em;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .talks-intro {
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            font-size: 1.2em;
+            color: #555;
+            padding: 0 20px;
+        }
+
+        .calendar-container {
+            max-width: 900px;
+            margin: 60px auto 0 auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .calendar-title {
+            text-align: center;
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .event-card {
+            display: flex;
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border-left: 8px solid #ccc;
+            transition: transform 0.2s;
+        }
+
+        .event-card:hover { transform: translateX(5px); }
+
+        .event-date-box {
+            background-color: #f5f5f5;
+            min-width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            border-right: 1px solid #eee;
+        }
+
+        .event-date-box .day { font-size: 1.8em; font-weight: bold; color: #333; line-height: 1; }
+        .event-date-box .month { font-size: 0.9em; text-transform: uppercase; color: #666; margin-top: 5px; }
+
+        .event-details { padding: 20px; flex-grow: 1; }
+        .event-details h4 { margin: 0 0 10px 0; font-size: 1.3em; color: #333; }
+
+        .event-info { display: flex; flex-wrap: wrap; gap: 20px; color: #555; font-size: 0.95em; }
+        .event-info span { display: flex; align-items: center; }
+        
+        .border-blue { border-left-color: #1976d2; }
+        .border-green { border-left-color: #388e3c; }
+        .border-orange { border-left-color: #f57c00; }
+        .border-red { border-left-color: #d32f2f; }
+        .border-yellow { border-left-color: #fbc02d; }
+        .border-brown { border-left-color: #795548; }
+        .border-purple { border-left-color: #7b1fa2; }
+
+        .contact-section {
+            padding: 80px 20px;
+            background-color: #e3f2fd;
+            text-align: center;
+            scroll-margin-top: 60px;
+        }
+
+        .contact-section h2 {
+            color: #0d47a1;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .team-member {
+            background-color: white;
+            color: #0d47a1;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            border-color: #e91e63;
+            color: #e91e63;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .credits-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-top: 2px solid rgba(13, 71, 161, 0.1);
+        }
+
+        .credits-box p {
+            font-size: 1.2em;
+            color: #555;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e91e63;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover { background-color: #c2185b; }
+        /* --- FIN DEL CÓDIGO CSS --- */
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Entre Hilos y Voces</a>
+        <ul>
+            <li><a href="#mision">Misión</a></li>
+            <li><a href="#vision">Visión</a></li>
+            <li><a href="#grupos">Grupos</a></li>
+            <li><a href="#platicas">Pláticas</a></li>
+            <li><a href="#apoyo">Apoyo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section">
+        <img src="1.jpg" alt="Promoviendo la Paz y la Convivencia">
+        <div class="hero-content">
+            <h1>Promoviendo la Paz y la Convivencia</h1>
+            <p>Fomentamos valores, respeto y unión en nuestra comunidad.</p>
+            <a href="#mision" class="btn">Conoce nuestra empresa</a>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <section id="mision" class="full-width-section">
+        <div class="section-content">
+            <h2>Nuestra Misión</h2>
+            <p>Nuestra misión es promover una cultura de paz y convivencia mediante la educación en valores, la formación ciudadana y el fortalecimiento de los derechos humanos dentro de nuestras comunidades. Buscamos crear espacios inclusivos donde todas las personas, especialmente niñas, niños y jóvenes, puedan desarrollar su potencial, aprender a resolver conflictos de forma pacífica y participar activamente en la transformación positiva de su entorno.</p>
+            <p>Trabajamos para sensibilizar y educar a la población sobre la importancia del respeto, la igualdad, la empatía y la justicia social, impulsando iniciativas educativas y comunitarias que fomenten la participación, la cooperación y la solidaridad. Nuestra misión incluye defender y promover los derechos humanos, asegurando que todas las personas sean valoradas sin importar su origen, identidad, creencias o capacidades.</p>
+            <p>A través de programas formativos, proyectos comunitarios y actividades de impacto social, buscamos construir comunidades seguras, respetuosas y libres de discriminación, en las que cada individuo pueda vivir con dignidad y contribuir al bienestar colectivo.</p>
+        </div>
+    </section>
+
+    <div class="spacer" style="height: 150px;"></div> 
+
+    <section id="vision" class="full-width-section">
+        <div class="section-content">
+            <h2>Nuestra Visión</h2>
+            <p>Nuestra visión es ser una organización referente en la construcción de comunidades educativas y socialmente comprometidas, donde la paz, el respeto y los derechos humanos sean la base de todas las relaciones. Aspiramos a un futuro en el que niñas, niños, jóvenes y adultos crezcan en entornos seguros, inclusivos y libres de violencia, capaces de convivir en armonía y de valorar la diversidad como una fortaleza.</p>
+            <p>Nos proyectamos como una institución que inspira, guía y transforma, impulsando modelos educativos innovadores que promuevan la igualdad, la empatía y la responsabilidad social. Imaginamos comunidades donde cada persona se sienta escuchada, respetada y con la libertad de participar activamente en las decisiones que impactan su vida y su entorno.</p>
+            <p>Buscamos construir un futuro en el que los derechos humanos se vivan día a día, donde no exista discriminación por ninguna condición, y donde la cooperación, la solidaridad y la justicia social permitan el desarrollo integral de todas las personas. Nuestro propósito final es contribuir a una sociedad más pacífica, consciente y comprometida con el bienestar colectivo.</p>
+        </div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section id="grupos" class="slider-section">
+        <h2>Grupos y Actividades</h2>
+        
+        <div class="slider-track">
+            <div class="slide"><img src="8.jpg" alt="Grupo 1"></div>
+            <div class="slide"><img src="4.jpg" alt="Grupo 2"></div>
+            <div class="slide"><img src="5.jpg" alt="Grupo 3"></div>
+            <div class="slide"><img src="6.jpg" alt="Grupo 1"></div>
+            <div class="slide"><img src="7.jpg" alt="Grupo 2"></div>
+            <div class="slide"><img src="3.jpg" alt="Grupo 3"></div>
+        </div>
+
+        <div class="groups-grid" style="margin-top: 60px;">
+            <div class="group-card card-blue">
+                <h3>1. Grupo de Formación y Educación en Valores</h3>
+                <p>Este grupo está enfocado en desarrollar programas educativos para todas las edades.</p>
+                <strong>Actividades:</strong>
+                <ul>
+                    <li>Talleres de educación en valores.</li>
+                    <li>Charlas sobre derechos humanos.</li>
+                    <li>Sesiones de resolución pacífica.</li>
+                    <li>Círculos de lectura.</li>
+                    <li>Capacitaciones para docentes.</li>
+                </ul>
+            </div>
+
+            <div class="group-card card-green">
+                <h3>2. Grupo de Participación Comunitaria</h3>
+                <p>Enfocado en el trabajo directo con la comunidad.</p>
+                <strong>Actividades:</strong>
+                <ul>
+                    <li>Jornadas comunitarias de limpieza.</li>
+                    <li>Foros abiertos de diálogo.</li>
+                    <li>Encuentros culturales.</li>
+                    <li>Festivales para la paz.</li>
+                    <li>Brigadas de apoyo.</li>
+                </ul>
+            </div>
+
+            <div class="group-card card-orange">
+                <h3>3. Grupo de Inclusión y Derechos Humanos</h3>
+                <p>Su objetivo es promover la igualdad y evitar la discriminación.</p>
+                <strong>Actividades:</strong>
+                <ul>
+                    <li>Campañas de sensibilización.</li>
+                    <li>Talleres sobre inclusión.</li>
+                    <li>Asesoría comunitaria.</li>
+                    <li>Creación de espacios seguros.</li>
+                    <li>Mapeo de problemáticas.</li>
+                </ul>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="platicas" class="talks-section">
+        <h2>Pláticas Formativas</h2>
+        <p class="talks-intro">Las pláticas tienen como objetivo informar, sensibilizar y capacitar a la comunidad sobre temas esenciales para la convivencia pacífica.</p>
+
+        <div class="groups-grid">
+            <div class="group-card card-blue">
+                <h3>1. Cultura de Paz</h3>
+                <p>Promover el respeto mutuo y la resolución pacífica de conflictos.</p>
+            </div>
+            <div class="group-card card-green">
+                <h3>2. Derechos Humanos</h3>
+                <p>Difundir los principios básicos de los derechos humanos.</p>
+            </div>
+            <div class="group-card card-orange">
+                <h3>3. Prevención del Bullying</h3>
+                <p>Estrategias para prevenir y combatir la violencia escolar.</p>
+            </div>
+            <div class="group-card card-red">
+                <h3>4. Diversidad e Inclusión</h3>
+                <p>Fomentar el respeto a las diferencias culturales y sociales.</p>
+            </div>
+            <div class="group-card card-yellow">
+                <h3>5. Comunicación Asertiva</h3>
+                <p>Habilidades de comunicación para relaciones sanas.</p>
+            </div>
+            <div class="group-card card-brown">
+                <h3>6. Inteligencia Emocional</h3>
+                <p>Comprender y gestionar las emociones de forma sana.</p>
+            </div>
+            <div class="group-card card-purple">
+                <h3>7. Participación Ciudadana</h3>
+                <p>Motivar a la comunidad a involucrarse en acciones colectivas.</p>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <h3 class="calendar-title">Calendario de Actividades 2025</h3>
+
+            <div class="event-card border-blue">
+                <div class="event-date-box">
+                    <span class="day">22</span><span class="month">NOV</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #1976d2;">Cultura de Paz y Convivencia Respetuosa</h4>
+                    <div class="event-info">
+                        <span>10:00 a.m. – 11:30 a.m.</span>
+                        <span>Auditorio Comunitario Principal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-green">
+                <div class="event-date-box">
+                    <span class="day">24</span><span class="month">NOV</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #388e3c;">Derechos Humanos para Todos</h4>
+                    <div class="event-info">
+                        <span>12:00 p.m. – 1:30 p.m.</span>
+                        <span>Biblioteca Municipal, Sala 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-orange">
+                <div class="event-date-box">
+                    <span class="day">26</span><span class="month">NOV</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #f57c00;">Prevención del Bullying y Violencia Escolar</h4>
+                    <div class="event-info">
+                        <span>9:30 a.m. – 11:00 a.m.</span>
+                        <span>Centro Cultural Comunitario, Salón A</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-red">
+                <div class="event-date-box">
+                    <span class="day">28</span><span class="month">NOV</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #d32f2f;">Diversidad, Inclusión y Respeto</h4>
+                    <div class="event-info">
+                        <span>4:00 p.m. – 5:30 p.m.</span>
+                        <span>Escuela Secundaria “Unidad y Paz”</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-yellow">
+                <div class="event-date-box">
+                    <span class="day">30</span><span class="month">NOV</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #f9a825;">Comunicación Asertiva para la Vida Diaria</h4>
+                    <div class="event-info">
+                        <span>11:00 a.m. – 12:30 p.m.</span>
+                        <span>Centro Comunitario Los Pinos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-brown">
+                <div class="event-date-box">
+                    <span class="day">02</span><span class="month">DIC</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #5d4037;">Inteligencia Emocional y Manejo de Emociones</h4>
+                    <div class="event-info">
+                        <span>3:00 p.m. – 4:30 p.m.</span>
+                        <span>Instituto de Formación Ciudadana, Sala 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card border-purple">
+                <div class="event-date-box">
+                    <span class="day">05</span><span class="month">DIC</span>
+                </div>
+                <div class="event-details">
+                    <h4 style="color: #7b1fa2;">Participación Comunitaria y Ciudadanía Activa</h4>
+                    <div class="event-info">
+                        <span>10:00 a.m. – 11:30 a.m.</span>
+                        <span>Teatro Comunitario del Pueblo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apoyo" class="partners-section">
+        <h2>Instituciones de Apoyo</h2>
+        
+        <div class="partners-track">
+            <div class="partner-slide"><a href="https://cmdpdh.org" target="_blank"><img src="dh.jpg" alt="CMDPDH"></a></div>
+            <div class="partner-slide"><a href="https://serapaz.org.mx" target="_blank"><img src="serapaz.jpg" alt="SERAPAZ"></a></div>
+            <div class="partner-slide"><a href="https://myt.org.mx" target="_blank"><img src="museo.jpg" alt="Museo Memoria y Tolerancia"></a></div>
+            <div class="partner-slide"><a href="https://cndh.org.mx" target="_blank"><img src="ch.jpg" alt="CNDH"></a></div>
+            <div class="partner-slide"><a href="https://globalpeace.org" target="_blank"><img src="global.jpg" alt="Global Peace Foundation"></a></div>
+
+            <div class="partner-slide"><a href="https://cmdpdh.org" target="_blank"><img src="dh.jpg" alt="CMDPDH"></a></div>
+            <div class="partner-slide"><a href="https://serapaz.org.mx" target="_blank"><img src="serapaz.jpg" alt="SERAPAZ"></a></div>
+            <div class="partner-slide"><a href="https://myt.org.mx" target="_blank"><img src="museo.jpg" alt="Museo Memoria y Tolerancia"></a></div>
+            <div class="partner-slide"><a href="https://cndh.org.mx" target="_blank"><img src="ch.jpg" alt="CNDH"></a></div>
+            <div class="partner-slide"><a href="https://globalpeace.org" target="_blank"><img src="global.jpg" alt="Global Peace Foundation"></a></div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <h2>Nuestro Equipo</h2>
+        
+        <div class="team-container">
+            <div class="team-member">Perla Janette</div>
+            <div class="team-member">José Ósmar</div>
+            <div class="team-member">Omar Santiago</div>
+            <div class="team-member">Alexia Sofía</div>
+        </div>
+
+        <div class="credits-box">
+            <p>Página creada por los alumnos con apoyo de sus docentes.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Entre Hilos y Voces - Todos los derechos reservados.</p>
+    </footer>
+
+    </body>
+</html>
